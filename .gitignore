@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+node_modules/
+dist/
+*.iml
+npm-debug.log
+nohup.out
+
+# Webpack
+webpack-assets.json
+webpack-stats.json
+npm-debug.log
+.env
+.env.*
+/webpack/.env
+uploads/*
+.history/

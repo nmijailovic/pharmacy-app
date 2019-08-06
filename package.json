@@ -1,0 +1,85 @@
+{
+  "name": "ananas-api",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "watch": "noderize-scripts watch --env development",
+    "build": "noderize-scripts build",
+    "start": "noderize-scripts start",
+    "format": "noderize-scripts format",
+    "test": "noderize-scripts test",
+    "lint": "noderize-scripts lint",
+    "clean": "noderize-scripts clean"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@noderize/scripts": "^0.7.5",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "^8.0.0",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-react-transform": "^2.0.0",
+    "babel-plugin-typecheck": "^3.6.0",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "tslint": "^5.17.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0"
+  },
+  "dependencies": {
+    "@noderize/runtime": "^0.7.5",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.0",
+    "@types/joi": "^14.3.3",
+    "@types/jwt-decode": "^2.2.1",
+    "@types/sequelize": "^4.28.3",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "bows": "^1.7.0",
+    "busboy": "^0.3.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "fast-memoize": "^2.5.1",
+    "graphql": "^14.3.1",
+    "joi": "^14.3.1",
+    "js-cache": "^1.0.3",
+    "jwt-decode": "^2.2.0",
+    "md5": "^2.2.1",
+    "moment": "^2.15.2",
+    "mysql2": "^1.6.5",
+    "pretty-error": "^2.1.1",
+    "sequelize": "^5.8.12",
+    "socket.io": "^2.2.0"
+  },
+  "noderize": {
+    "env": {
+      "production": {
+        "minify": true,
+        "sourcemaps": false
+      },
+      "development": {
+        "minify": false,
+        "sourcemaps": true,
+        "inspectChrome": 9239
+      }
+    },
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "bundles": [
+      {
+        "entry": "server.ts",
+        "output": "index.js"
+      }
+    ]
+  }
+}

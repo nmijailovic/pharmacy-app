@@ -25,3 +25,19 @@ Controllers represent the REST End Points, provide simple validation and prepare
 
 Provide Resolver logic and return data via Fields
 
+# How to execute?
+
+### install dependencies
+yarn install
+
+### create a production build
+yarn build
+
+
+### start the application
+yarn start
+
+### watch for file changes (only for development mode)
+yarn watch
+
+
