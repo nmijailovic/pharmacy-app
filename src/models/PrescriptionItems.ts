@@ -78,10 +78,10 @@ export default (sequelize, DataTypes) => {
       // disable the modification of table names; By default, sequelize will automatically
       // transform all passed model names (first parameter of define) into plural.
       // if you don't want that, set the following
-      freezeTableName: true
+      freezeTableName: false
 
       // define the table's name
-      // tableName: 'my_very_custom_table_name',
+      // tableName: 'PrescriptionItems',
 
       // Enable optimistic locking.  When enabled, sequelize will add a version count attribute
       // to the model and throw an OptimisticLockingError error when stale instances are saved.
@@ -90,10 +90,11 @@ export default (sequelize, DataTypes) => {
     }
   );
 
-  // PrescriptionItem.associate = function(models) {
-  //  // Used to describe associations
-  //  // Read More at http://docs.sequelizejs.com/manual/associations.html
-  // };
+  PrescriptionItem.associate = models => {
+    // Used to describe associations
+    // Read More at http://docs.sequelizejs.com/manual/associations.html
+    models.PrescriptionItem.belongsTo(models.Prescription);
+  };
 
   // Instance Methods
 

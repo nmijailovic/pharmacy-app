@@ -16,7 +16,6 @@ export default (sequelize, DataTypes) => {
     // comment: 'column comment' - it is possible to add coments on columns for MySQL, PostgreSQL and MSSQL
     // only validate: - it is possible to set per attribute validations
 
-
     'Doctor',
     {
       id: {
@@ -24,72 +23,63 @@ export default (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
 
-        allowNull: true,
+        allowNull: true
         // unique: false / true
       },
       firstName: {
         type: DataTypes.STRING(50),
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       lastName: {
         type: DataTypes.STRING(50),
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       phoneNumber: {
         type: DataTypes.STRING(30),
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       licenseNo: {
         type: DataTypes.STRING(30),
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       licenseExpiry: {
         type: DataTypes.DATEONLY,
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       practiceType: {
         type: DataTypes.STRING(120),
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       createdAt: {
         type: DataTypes.DATE,
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       updatedAt: {
         type: DataTypes.DATE,
 
-
-        allowNull: false,
+        allowNull: false
         // unique: false / true
       },
       deletedAt: {
         type: DataTypes.DATE,
 
-
-        allowNull: true,
+        allowNull: true
         // unique: false / true
-      },
+      }
     },
     {
       // The name of the model. The model will be stored in `sequelize.models` under this name.
@@ -112,10 +102,10 @@ export default (sequelize, DataTypes) => {
       // disable the modification of table names; By default, sequelize will automatically
       // transform all passed model names (first parameter of define) into plural.
       // if you don't want that, set the following
-      freezeTableName: true,
+      freezeTableName: false
 
       // define the table's name
-      // tableName: 'my_very_custom_table_name',
+      // tableName: 'Doctors'
 
       // Enable optimistic locking.  When enabled, sequelize will add a version count attribute
       // to the model and throw an OptimisticLockingError error when stale instances are saved.
@@ -124,10 +114,11 @@ export default (sequelize, DataTypes) => {
     }
   );
 
-  // Doctor.associate = function(models) {
-  //  // Used to describe associations
-  //  // Read More at http://docs.sequelizejs.com/manual/associations.html
-  // };
+  Doctor.associate = models => {
+    // Used to describe associations
+    // Read More at http://docs.sequelizejs.com/manual/associations.html
+    models.Doctor.hasMany(models.Prescription);
+  };
 
   // Instance Methods
 

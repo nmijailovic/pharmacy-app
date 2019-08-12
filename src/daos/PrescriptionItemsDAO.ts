@@ -30,7 +30,11 @@ export class PrescriptionItemsDAO extends BaseDAO {
   // LIST BASED ON QUERY PARAMS - GET /api/resources?param1=x&param2=34
   //////////////////////////////////////////////////////////////////////////
 
-  public async list(token: IToken, parentWsIds: IKVObject, params: IPrescriptionItemsParams): Promise<IApiPagedResponse<IPrescriptionItemsWS>> {
+  public async list(
+    token: IToken,
+    parentWsIds: IKVObject,
+    params: IPrescriptionItemsParams
+  ): Promise<IApiPagedResponse<IPrescriptionItemsWS>> {
     try {
       log('list: ParentWsIds:', parentWsIds, 'params:', params);
 
@@ -38,7 +42,7 @@ export class PrescriptionItemsDAO extends BaseDAO {
       const searchObj = this.GetSearchObj(parentWsIds, params);
 
       // get the data from db via sequilize
-      const results = await models.PrescriptionItems.findAndCountAll({
+      const results = await models.PrescriptionItem.findAndCountAll({
         where: searchObj.where,
         order: searchObj.order,
         offset: searchObj.pagination.offset,
@@ -72,7 +76,7 @@ export class PrescriptionItemsDAO extends BaseDAO {
       // convert params into where clause
       const searchObj = this.GetSearchObj(parentWsIds, params);
 
-      const result = await models.PrescriptionItems.findOne({
+      const result = await models.PrescriptionItem.findOne({
         where: searchObj.where,
         // GQL requires Sub-Object IDs
         include: this.getJoinIncludeAry(searchObj)
@@ -93,7 +97,7 @@ export class PrescriptionItemsDAO extends BaseDAO {
   public async create(token: IToken, parentWsIds: IKVObject, ws: IPrescriptionItemsWS): Promise<IPrescriptionItemsWS> {
     try {
       log('create: ParentWsIds:', parentWsIds, 'WS:', ws);
-      const result = await models.PrescriptionItems.create({
+      const result = await models.PrescriptionItem.create({
         // ws fields
         ...ws,
         // parent resource IDs
@@ -120,7 +124,7 @@ export class PrescriptionItemsDAO extends BaseDAO {
 
       // result: first element is always the number of affected rows, while the second element
       // is the actual affected rows (only supported in postgres with options.returning true.)
-      const result = await models.PrescriptionItems.update(
+      const result = await models.PrescriptionItem.update(
         {
           // ws fields
           ...ws,
@@ -154,7 +158,7 @@ export class PrescriptionItemsDAO extends BaseDAO {
 
       // result: first element is always the number of affected rows, while the second element
       // is the actual affected rows (only supported in postgres with options.returning true.)
-      const result = await models.PrescriptionItems.update(
+      const result = await models.PrescriptionItem.update(
         {
           // ws fields
           ...ws,
@@ -187,7 +191,7 @@ export class PrescriptionItemsDAO extends BaseDAO {
       // delete multiple instances, or set their deletedAt timestamp to the current time
       // if paranoid is enabled.
       // result: The number of destroyed rows
-      const result = await models.PrescriptionItems.destroy({
+      const result = await models.PrescriptionItem.destroy({
         where: { ...parentWsIds, id }
       });
 
@@ -220,4 +224,3 @@ export class PrescriptionItemsDAO extends BaseDAO {
 }
 
 export const prescriptionItemsDAO = new PrescriptionItemsDAO();
-

@@ -38,7 +38,7 @@ export class CouriersDAO extends BaseDAO {
       const searchObj = this.GetSearchObj(parentWsIds, params);
 
       // get the data from db via sequilize
-      const results = await models.Couriers.findAndCountAll({
+      const results = await models.Courier.findAndCountAll({
         where: searchObj.where,
         order: searchObj.order,
         offset: searchObj.pagination.offset,
@@ -72,7 +72,7 @@ export class CouriersDAO extends BaseDAO {
       // convert params into where clause
       const searchObj = this.GetSearchObj(parentWsIds, params);
 
-      const result = await models.Couriers.findOne({
+      const result = await models.Courier.findOne({
         where: searchObj.where,
         // GQL requires Sub-Object IDs
         include: this.getJoinIncludeAry(searchObj)
@@ -93,7 +93,7 @@ export class CouriersDAO extends BaseDAO {
   public async create(token: IToken, parentWsIds: IKVObject, ws: ICouriersWS): Promise<ICouriersWS> {
     try {
       log('create: ParentWsIds:', parentWsIds, 'WS:', ws);
-      const result = await models.Couriers.create({
+      const result = await models.Courier.create({
         // ws fields
         ...ws,
         // parent resource IDs
@@ -120,7 +120,7 @@ export class CouriersDAO extends BaseDAO {
 
       // result: first element is always the number of affected rows, while the second element
       // is the actual affected rows (only supported in postgres with options.returning true.)
-      const result = await models.Couriers.update(
+      const result = await models.Courier.update(
         {
           // ws fields
           ...ws,
@@ -154,7 +154,7 @@ export class CouriersDAO extends BaseDAO {
 
       // result: first element is always the number of affected rows, while the second element
       // is the actual affected rows (only supported in postgres with options.returning true.)
-      const result = await models.Couriers.update(
+      const result = await models.Courier.update(
         {
           // ws fields
           ...ws,
@@ -187,7 +187,7 @@ export class CouriersDAO extends BaseDAO {
       // delete multiple instances, or set their deletedAt timestamp to the current time
       // if paranoid is enabled.
       // result: The number of destroyed rows
-      const result = await models.Couriers.destroy({
+      const result = await models.Courier.destroy({
         where: { ...parentWsIds, id }
       });
 
@@ -220,4 +220,3 @@ export class CouriersDAO extends BaseDAO {
 }
 
 export const couriersDAO = new CouriersDAO();
-
