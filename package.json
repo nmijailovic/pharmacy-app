@@ -57,7 +57,7 @@
     "mysql2": "^1.6.5",
     "pretty-error": "^2.1.1",
     "sequelize": "^5.8.12",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.4.0"
   },
   "noderize": {
     "env": {
